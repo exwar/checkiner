@@ -1,7 +1,2 @@
-*.log
-util.mocha.json
-
 node_modules
-
-dist
-coverage
+.next
