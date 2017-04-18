@@ -3,6 +3,7 @@ const next = require('next');
 const fetch = require('isomorphic-fetch');
 const bodyParser = require('body-parser');
 const checkinMiddleware = require('./utils/checkinMiddleware');
+const authMiddleware = require('./utils/authMiddleware');
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -13,6 +14,7 @@ app.prepare()
     const server = express();
     server.use(bodyParser.json());
 
+    server.get('/oauth', authMiddleware);
     server.post('/checkin', checkinMiddleware);
 
     server.get('*', (req, res) => {

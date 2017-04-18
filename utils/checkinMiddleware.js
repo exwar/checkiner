@@ -35,7 +35,7 @@ const checkinMiddleware = (req, res) => {
   }];
 
   const data = qs.stringify({
-    channel: process.env.CHECKINER_CHANNEL || '@stan',
+    channel: process.env.SLACK_APP_CHANNEL || '@stan',
     token: req.body.token,
     as_user: true,
     attachments: JSON.stringify(attachments),

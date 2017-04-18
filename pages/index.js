@@ -76,7 +76,6 @@ class Index extends Component {
 
     fetch(url, options)
       .then(checkStatus)
-      // .then(parseJSON)
       .then(() => {
         this.setState({
           isSubmiting: false,
