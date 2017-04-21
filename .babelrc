@@ -4,12 +4,17 @@
     "stage-0"
   ],
   "plugins": [
-    ["module-resolver", {
-      "root": ["./"],
-      "alias": {
-        "components": "./components",
-        "utils": "./utils"
+    [
+      "module-resolver",
+      {
+        "root": [
+          "./"
+        ],
+        "alias": {
+          "components": "./components",
+          "utils": "./utils"
+        }
       }
-    }]
+    ]
   ]
 }

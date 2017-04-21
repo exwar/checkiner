@@ -1,16 +1,16 @@
-const checkStatus = (response) => {
+const checkStatus = response => {
   if (response.status >= 200 && response.status < 300) {
-    return response
+    return response;
   } else {
-    var error = new Error(response.statusText)
-    error.response = response
-    throw error
+    var error = new Error(response.statusText);
+    error.response = response;
+    throw error;
   }
-}
+};
 
-const parseJSON = (response) => response.json();
+const parseJSON = response => response.json();
 
 module.exports = {
   checkStatus,
   parseJSON,
-}
+};

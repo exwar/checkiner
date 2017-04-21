@@ -5,7 +5,7 @@ import Router from 'next/router';
 
 class Login extends Component {
   componentDidMount() {
-    let profile = localStorage.getItem('profile')
+    let profile = localStorage.getItem('profile');
     if (profile) {
       return Router.replace('/');
     }
@@ -42,7 +42,7 @@ class Login extends Component {
           }
         `}</style>
       </Layout>
-    )
+    );
   }
 }
 

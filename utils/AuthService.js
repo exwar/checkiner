@@ -28,11 +28,11 @@ export default class AuthService {
   }
 
   setProfile(profile) {
-    localStorage.setItem('profile', JSON.stringify(profile))
+    localStorage.setItem('profile', JSON.stringify(profile));
   }
 
   getProfile() {
-    const profile = localStorage.getItem('profile')
-    return profile ? JSON.parse(localStorage.profile) : {}
+    const profile = localStorage.getItem('profile');
+    return profile ? JSON.parse(localStorage.profile) : {};
   }
 }

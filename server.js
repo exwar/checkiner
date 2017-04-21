@@ -9,7 +9,8 @@ const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
-app.prepare()
+app
+  .prepare()
   .then(() => {
     const server = express();
     server.use(bodyParser.json());
@@ -21,12 +22,12 @@ app.prepare()
       return handle(req, res);
     });
 
-    server.listen(3010, (err) => {
-      if (err) throw err
+    server.listen(3010, err => {
+      if (err) throw err;
       console.log('> Ready on http://localhost:3010');
     });
   })
-  .catch((ex) => {
+  .catch(ex => {
     console.error(ex.stack);
     process.exit(1);
-  })
+  });

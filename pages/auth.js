@@ -5,9 +5,7 @@ import Spinner from 'components/Spinner';
 
 class Auth extends Component {
   static getInitialProps({ req, res, query }) {
-  return req && !query.code
-    ? res.writeHead(302, { Location: '/' }).end()
-    : {};
+    return req && !query.code ? res.writeHead(302, { Location: '/' }).end() : {};
   }
 
   componentDidMount() {
@@ -19,7 +17,7 @@ class Auth extends Component {
       <Layout>
         <div>
           <Spinner />
-            <style jsx>{`
+          <style jsx>{`
               div {
                 min-height: 100vh;
                 height: 100%;

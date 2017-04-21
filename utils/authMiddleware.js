@@ -22,9 +22,9 @@ const authMiddleware = (req, res) => {
         return res.status(500).send(json);
       }
     })
-    .catch((err) => {
-      return res.status(500).send(err)
+    .catch(err => {
+      return res.status(500).send(err);
     });
-}
+};
 
 module.exports = authMiddleware;

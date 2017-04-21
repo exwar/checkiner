@@ -4,7 +4,7 @@ import 'isomorphic-fetch';
 import AuthService from 'utils/AuthService';
 import Layout from 'components/Layout';
 import Header from 'components/Header';
-import TextArea from 'components/TextArea'
+import TextArea from 'components/TextArea';
 import Router from 'next/router';
 import Spinner from 'components/Spinner';
 import { checkStatus, parseJSON } from 'utils/api';
@@ -15,7 +15,7 @@ const FIELD_TODAY = 'today';
 
 class Index extends Component {
   componentDidMount() {
-    let profile = localStorage.getItem('profile')
+    let profile = localStorage.getItem('profile');
     if (!profile) {
       return Router.replace('/login');
     }
@@ -23,7 +23,7 @@ class Index extends Component {
     this.setState({
       profile: JSON.parse(localStorage.profile),
       isLoading: false,
-    })
+    });
   }
 
   state = {
@@ -34,19 +34,19 @@ class Index extends Component {
     isLoading: true,
     isSubmiting: false,
     isPosted: false,
-  }
+  };
 
   handleTextAreaChange(text, id) {
     this.setState({
       [id]: text,
-    })
+    });
   }
 
   handleBlockersChange = () => {
     this.setState(prevState => ({
       isBlocked: !prevState.isBlocked,
     }));
-  }
+  };
 
   handleLogout() {
     localStorage.removeItem('profile');
@@ -58,8 +58,8 @@ class Index extends Component {
     const options = {
       method: 'POST',
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         yesterday: this.state[FIELD_YESTERDAY],
@@ -97,8 +97,7 @@ class Index extends Component {
           isSubmiting: false,
         });
       });
-
-  }
+  };
 
   renderLoader() {
     return (
@@ -114,18 +113,14 @@ class Index extends Component {
           }
         `}</style>
       </div>
-    )
+    );
   }
 
   renderPage() {
     const isSubmitDisabled =
-      this.state.isSubmiting
-      || this.state.isPosted
-      || (
-        this.state[FIELD_YESTERDAY].trim().length < 1
-        && this.state[FIELD_TODAY].trim().length < 1
-      )
-
+      this.state.isSubmiting ||
+      this.state.isPosted ||
+      (this.state[FIELD_YESTERDAY].trim().length < 1 && this.state[FIELD_TODAY].trim().length < 1);
 
     return (
       <div className="checkin">
@@ -154,20 +149,15 @@ class Index extends Component {
               <label className={`checkin__blockers ${this.state.isBlocked ? 'checkin__blockers__blocked' : ''}`}>
                 <input type="checkbox" checked={!this.state.isBlocked} onChange={this.handleBlockersChange} />
                 No blockers
-            </label>
-              <button
-                type="submit"
-                className="checkin__submit"
-                disabled={isSubmitDisabled}
-                onClick={this.handleSubmit}
-              >
-                {
-                  this.state.isSubmiting
-                    ? <span>Posting...</span>
-                    : this.state.isPosted
+              </label>
+              <button type="submit" className="checkin__submit" disabled={isSubmitDisabled} onClick={this.handleSubmit}>
+                {this.state.isSubmiting
+                  ? <span>Posting...</span>
+                  : this.state.isPosted
                       ? <span>Posted!</span>
-                      : <span>Post to <small>#afd-ecommerce-standup</small></span>
-                }
+                      : <span>
+                          Post to <small>#afd-ecommerce-standup</small>
+                        </span>}
               </button>
             </footer>
           </div>
@@ -266,16 +256,12 @@ class Index extends Component {
   render() {
     return (
       <Layout>
-        {
-          this.state.isLoading
-            ? this.renderLoader()
-            : this.renderPage()
-        }
+        {this.state.isLoading ? this.renderLoader() : this.renderPage()}
         <style jsx>{`
           span { font-size: 2rem; color: #fff; }
         `}</style>
       </Layout>
-    )
+    );
   }
 }
 
