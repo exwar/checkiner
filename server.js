@@ -2,6 +2,7 @@ const express = require('express');
 const next = require('next');
 const fetch = require('isomorphic-fetch');
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
 const checkinMiddleware = require('./utils/checkinMiddleware');
 const authMiddleware = require('./utils/authMiddleware');
 
@@ -14,6 +15,7 @@ app
   .then(() => {
     const server = express();
     server.use(bodyParser.json());
+    server.use(morgan(dev ? 'dev' : 'short'));
 
     server.get('/oauth', authMiddleware);
     server.post('/checkin', checkinMiddleware);
