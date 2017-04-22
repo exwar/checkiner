@@ -40,7 +40,7 @@ const checkinMiddleware = (req, res) => {
           short: false,
         },
       ],
-      footer: "<https://slackcheck.in|Stan's IT Chekiner 3000>",
+      footer: "<https://slackcheck.in|Stan's IT Checkiner 3000>",
     },
   ];
 
