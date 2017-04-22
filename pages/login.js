@@ -4,7 +4,15 @@ import SlackButton from 'components/SlackButton';
 import Router from 'next/router';
 
 class Login extends Component {
+  static getInitialProps({ req }) {
+    return req
+      ? { redirectOrigin: `${req.protocol}://${req.get('host')}/auth` }
+      : { redirectOrigin: `${location.protocol}//${location.host}/auth` };
+  }
+
   componentDidMount() {
+    console.log(this.props.redirectOrigin);
+
     let profile = localStorage.getItem('profile');
     if (profile) {
       return Router.replace('/');
@@ -18,7 +26,7 @@ class Login extends Component {
           <div className="login-page__header">
             <h1>Checkiner 3000<sup>v2.0</sup></h1>
           </div>
-          <SlackButton />
+          <SlackButton redirectOrigin={this.props.redirectOrigin} />
         </article>
 
         <style jsx>{`
