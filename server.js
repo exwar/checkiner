@@ -7,6 +7,7 @@ const checkinMiddleware = require('./utils/checkinMiddleware');
 const authMiddleware = require('./utils/authMiddleware');
 
 const dev = process.env.NODE_ENV !== 'production';
+const PORT = process.env.PORT || 3010;
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
@@ -16,6 +17,7 @@ app
     const server = express();
     server.use(bodyParser.json());
     server.use(morgan(dev ? 'dev' : 'short'));
+    server.enable('trust proxy'),
 
     server.get('/oauth', authMiddleware);
     server.post('/checkin', checkinMiddleware);
@@ -24,9 +26,9 @@ app
       return handle(req, res);
     });
 
-    server.listen(3010, err => {
+    server.listen(PORT, err => {
       if (err) throw err;
-      console.log('> Ready on http://localhost:3010');
+      console.log(`> Checkiner is ready on http://localhost:${PORT}`);
     });
   })
   .catch(ex => {
