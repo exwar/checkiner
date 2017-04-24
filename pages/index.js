@@ -9,6 +9,7 @@ import Router from 'next/router';
 import Spinner from 'components/Spinner';
 import { checkStatus, parseJSON } from 'utils/api';
 import { isYesterdayASunday } from 'utils/date';
+import { fetchIssuesData } from 'utils/jira';
 
 const FIELD_YESTERDAY = 'yesterday';
 const FIELD_TODAY = 'today';

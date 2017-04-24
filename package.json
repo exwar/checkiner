@@ -5,11 +5,13 @@
     "body-parser": "1.17.1",
     "express": "4.15.2",
     "isomorphic-fetch": "2.2.1",
+    "lodash": "4.17.4",
     "morgan": "1.8.1",
     "next": "2.1.1",
     "qs": "6.4.0",
     "react": "15.5.4",
-    "react-dom": "15.5.4"
+    "react-dom": "15.5.4",
+    "reverse-string": "0.0.6"
   },
   "scripts": {
     "dev": "node server.js",
