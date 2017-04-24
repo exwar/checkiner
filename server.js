@@ -11,13 +11,22 @@ const PORT = process.env.PORT || 3010;
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
+// Checking for setted environment variables
+const REQUIRED_ENV_VARS = ['SLACK_APP_ID', 'SLACK_APP_SECRET', 'SLACK_APP_CHANNEL', 'JIRA_USER', 'JIRA_PASSWORD'];
+
+REQUIRED_ENV_VARS.map(env => {
+  if (process.env[env] === undefined) {
+    throw `Please verify that all environment variables are correctly set:\n- ${REQUIRED_ENV_VARS.join('\n- ')}`;
+  }
+});
+
 app
   .prepare()
   .then(() => {
     const server = express();
     server.use(bodyParser.json());
     server.use(morgan(dev ? 'dev' : 'short'));
-    server.enable('trust proxy'),
+    server.enable('trust proxy');
 
     server.get('/oauth', authMiddleware);
     server.post('/checkin', checkinMiddleware);
