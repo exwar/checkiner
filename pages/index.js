@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import 'isomorphic-fetch';
+import Confetti from 'react-dom-confetti';
 
 import AuthService from 'utils/AuthService';
 import Layout from 'components/Layout';
@@ -13,6 +14,14 @@ import { fetchIssuesData } from 'utils/jira';
 
 const FIELD_YESTERDAY = 'yesterday';
 const FIELD_TODAY = 'today';
+
+const confettiConfig = {
+  angle: 115,
+  spread: 60,
+  startVelocity: 20,
+  elementCount: 40,
+  decay: 0.95,
+};
 
 class Index extends Component {
   componentDidMount() {
@@ -152,6 +161,7 @@ class Index extends Component {
                 No blockers
               </label>
               <button type="submit" className="checkin__submit" disabled={isSubmitDisabled} onClick={this.handleSubmit}>
+                <Confetti active={this.state.isPosted} config={confettiConfig} />
                 {this.state.isSubmiting
                   ? <span>Posting...</span>
                   : this.state.isPosted

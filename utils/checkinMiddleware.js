@@ -52,7 +52,7 @@ const getAttachments = (username, yesterday, today, isBlocked, jiraIssues) => {
   }
 
   attachments[0].fields.push({
-    value: isBlocked ? '🛑 Blocked' : '✅ No blockers',
+    value: isBlocked ? '🚨 Blocked' : '✅ No blockers',
     short: false,
   });
 

@@ -1403,6 +1403,10 @@ diffie-hellman@^5.0.0:
     miller-rabin "^4.0.0"
     randombytes "^2.0.0"
 
+dom-confetti@0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/dom-confetti/-/dom-confetti-0.0.6.tgz#52e24d56670d456992dfdd27d2ece4148cfa4137"
+
 dom-walk@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/dom-walk/-/dom-walk-0.1.1.tgz#672226dc74c8f799ad35307df936aba11acd6018"
@@ -2835,6 +2839,12 @@ rc@^1.1.7:
 react-deep-force-update@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/react-deep-force-update/-/react-deep-force-update-2.0.1.tgz#4f7f6c12c3e7de42f345992a3c518236fa1ecad3"
+
+react-dom-confetti@0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/react-dom-confetti/-/react-dom-confetti-0.0.7.tgz#d3517c3db1b0752556fe9e5a6290c66fa9a5c5c8"
+  dependencies:
+    dom-confetti "0.0.6"
 
 react-dom@15.5.4:
   version "15.5.4"

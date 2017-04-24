@@ -27,6 +27,7 @@ class Layout extends Component {
             font-size: 10px;
           }
           .layout {
+            overflow: hidden;
             height: 100%;
             min-height: 100vh;
             background: url('/static/bg-pattern.jpg') 0 0 repeat;

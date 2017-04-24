@@ -3,10 +3,8 @@ const _ = require('lodash');
 const reverseString = require('reverse-string');
 const api = require('./api.js');
 
-// const JIRA_USER = process.env.JIRA_USER;
-// const JIRA_PASSWORD = process.env.JIRA_PASSWORD;
-const JIRA_USER = 'Stanislav.Nekrasov';
-const JIRA_PASSWORD = 'M3poz7!';
+const JIRA_USER = process.env.JIRA_USER;
+const JIRA_PASSWORD = process.env.JIRA_PASSWORD;
 const JIRA_DOMAIN = 'https://aussiefarmers.atlassian.net';
 const JIRA_ISSUE_REGEX = /\d+-[A-Z]+(?!-?[a-zA-Z]{1,10})/gm;
 
