@@ -49,7 +49,7 @@ const fetchIssuesData = (issues = []) => {
     },
   };
 
-  return fetch(url, options).then(api.checkStatus).then(api.parseJSON).catch(ex => {
+  return fetch(url, options).then(api.parseJSON).catch(ex => {
     throw ex;
   });
 };
