@@ -36,13 +36,13 @@ const matchJiraIssues = text => {
 const fetchIssuesData = (issues = []) => {
   if (issues.length < 1) throw 'At least one JIRA issue should be passed';
 
-  const jql = `issuetype in (standardIssueTypes(), subTaskIssueTypes()) AND issuekey in (${issues.join(', ')})`;
+  const jql = `issuetype in (standardIssueTypes(), subTaskIssueTypes()) AND issuekey IN ${issues.join(' OR issuekey IN ')}`;
   const jqlQuery = qs.stringify({
+    validateQuery: false,
     jql,
   });
 
   const url = `${JIRA_DOMAIN}/rest/api/2/search?${jqlQuery}`;
-
   const options = {
     headers: {
       Authorization: getBasicAuthHeader(JIRA_USER, JIRA_PASSWORD),

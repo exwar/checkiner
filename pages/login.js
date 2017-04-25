@@ -16,8 +16,6 @@ class Login extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props.redirectOrigin);
-
     let profile = localStorage.getItem('profile');
     if (profile) {
       return Router.replace('/');
