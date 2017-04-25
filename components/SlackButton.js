@@ -10,7 +10,7 @@ class SlackButton extends React.Component {
     const url = `https://slack.com/oauth/authorize?${params}`;
 
     return (
-      <a href={url}>
+      <a href={url} onClick={this.props.onClick}>
         <img
           alt="Sign in with Slack"
           height="40"

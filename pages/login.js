@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Layout from 'components/Layout';
 import SlackButton from 'components/SlackButton';
 import Router from 'next/router';
+import Spinner from 'components/Spinner';
 
 class Login extends Component {
   static getInitialProps({ req }) {
@@ -9,6 +10,10 @@ class Login extends Component {
       ? { redirectOrigin: `${req.protocol}://${req.get('host')}/auth` }
       : { redirectOrigin: `${location.protocol}//${location.host}/auth` };
   }
+
+  state = {
+    isSigningIn: false,
+  };
 
   componentDidMount() {
     console.log(this.props.redirectOrigin);
@@ -19,6 +24,12 @@ class Login extends Component {
     }
   }
 
+  handleSignInClick = () => {
+    this.setState({
+      isSigningIn: true,
+    });
+  };
+
   render() {
     return (
       <Layout>
@@ -26,7 +37,12 @@ class Login extends Component {
           <div className="login-page__header">
             <h1>Checkiner 3000<sup>v2.0</sup></h1>
           </div>
-          <SlackButton redirectOrigin={this.props.redirectOrigin} />
+          <div className="login-page__signin">
+            {this.state.isSigningIn
+              ? <Spinner />
+              : <SlackButton onClick={this.handleSignInClick} redirectOrigin={this.props.redirectOrigin} />}
+          </div>
+
         </article>
 
         <style jsx>{`
@@ -47,6 +63,12 @@ class Login extends Component {
             font-size: 1rem;
             vertical-align: 2.5rem;
             opacity: .4;
+          }
+          .login-page__signin {
+            height: 5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
         `}</style>
       </Layout>
