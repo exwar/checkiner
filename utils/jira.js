@@ -29,7 +29,7 @@ const matchJiraIssues = text => {
   const matches = reversedText.match(JIRA_ISSUE_REGEX);
 
   return matches !== null && matches.length > 0
-    ? _.reverse(_.uniq(matches.map(issue => reverseString(issue).trim())))
+    ? _.uniq(_.reverse(matches.map(issue => reverseString(issue).trim())))
     : [];
 };
 
@@ -42,6 +42,7 @@ const fetchIssuesData = (issues = []) => {
   });
 
   const url = `${JIRA_DOMAIN}/rest/api/2/search?${jqlQuery}`;
+
   const options = {
     headers: {
       Authorization: getBasicAuthHeader(JIRA_USER, JIRA_PASSWORD),
@@ -57,7 +58,7 @@ const fetchIssuesData = (issues = []) => {
 const parseIssues = json => {
   if (!json.total || json.total < 1 || !json.issues.length) return [];
 
-  return json.issues.reduce((issues, issue) => {
+  return _.reverse(json.issues).reduce((issues, issue) => {
     return [
       ...issues,
       {
