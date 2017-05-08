@@ -167,7 +167,8 @@ class Index extends Component {
                   : this.state.isPosted
                       ? <span>Posted!</span>
                       : <span>
-                          Post to <small>#afd-ecommerce-standup</small>
+                          Post to
+                          <small>{this.state.profile.channel}</small>
                         </span>}
               </button>
             </footer>
@@ -242,12 +243,17 @@ class Index extends Component {
             font: 1.75rem sans-serif;
             color: #fff;
             height: 3.4rem;
-            min-width: 13.7rem;
+            min-width: 10.4rem;
+            max-width: 14rem;
             transition: color .2s;
           }
           .checkin__submit small {
             display: block;
             font-size: 1.2rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 100%;
           }
           .checkin__submit span:before {
             content: '';

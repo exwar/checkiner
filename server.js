@@ -3,6 +3,7 @@ const next = require('next');
 const fetch = require('isomorphic-fetch');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const slackMiddleware = require('./utils/slackMiddleware');
 const checkinMiddleware = require('./utils/checkinMiddleware');
 const authMiddleware = require('./utils/authMiddleware');
 
@@ -28,6 +29,7 @@ app
     server.use(morgan(dev ? 'dev' : 'short'));
     server.enable('trust proxy');
 
+    server.get('/slack', slackMiddleware);
     server.get('/oauth', authMiddleware);
     server.post('/checkin', checkinMiddleware);
 

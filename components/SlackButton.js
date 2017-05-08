@@ -2,12 +2,8 @@ import qs from 'qs';
 
 class SlackButton extends React.Component {
   render() {
-    const params = qs.stringify({
-      scope: 'identity.basic,identity.avatar',
-      client_id: '16958440739.169826916213',
-      redirect_uri: this.props.redirectOrigin,
-    });
-    const url = `https://slack.com/oauth/authorize?${params}`;
+    const params = qs.stringify({ action: 'signin' });
+    const url = `/slack?${params}`;
 
     return (
       <a href={url} onClick={this.props.onClick}>

@@ -9,7 +9,7 @@ class Auth extends Component {
   }
 
   componentDidMount() {
-    const auth = new AuthService(this.props.url.query.code);
+    const auth = new AuthService(this.props.url.query.code, this.props.url.query.state);
   }
 
   render() {

@@ -5,12 +5,6 @@ import Router from 'next/router';
 import Spinner from 'components/Spinner';
 
 class Login extends Component {
-  static getInitialProps({ req }) {
-    return req
-      ? { redirectOrigin: `${req.protocol}://${req.get('host')}/auth` }
-      : { redirectOrigin: `${location.protocol}//${location.host}/auth` };
-  }
-
   state = {
     isSigningIn: false,
   };
@@ -22,7 +16,7 @@ class Login extends Component {
     }
   }
 
-  handleSignInClick = () => {
+  handleSignInClick = event => {
     this.setState({
       isSigningIn: true,
     });
@@ -36,9 +30,7 @@ class Login extends Component {
             <h1>Checkiner 3000<sup>v2.0</sup></h1>
           </div>
           <div className="login-page__signin">
-            {this.state.isSigningIn
-              ? <Spinner />
-              : <SlackButton onClick={this.handleSignInClick} redirectOrigin={this.props.redirectOrigin} />}
+            {this.state.isSigningIn ? <Spinner /> : <SlackButton onClick={this.handleSignInClick} />}
           </div>
 
         </article>
