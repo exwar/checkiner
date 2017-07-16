@@ -1432,9 +1432,9 @@ diffie-hellman@^5.0.0:
     miller-rabin "^4.0.0"
     randombytes "^2.0.0"
 
-dom-confetti@0.0.6:
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/dom-confetti/-/dom-confetti-0.0.6.tgz#52e24d56670d456992dfdd27d2ece4148cfa4137"
+dom-confetti@~0.0.7:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/dom-confetti/-/dom-confetti-0.0.8.tgz#41ad0dba6c4fd785fd028e6b4bd3eb3c807b0492"
 
 dom-walk@^0.1.0:
   version "0.1.1"
@@ -2465,9 +2465,9 @@ negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
 
-next@2.4.6:
-  version "2.4.6"
-  resolved "https://registry.yarnpkg.com/next/-/next-2.4.6.tgz#e3a88b60374bd92fbbf2bf8df9dc9f325471ddbb"
+next@2.4.7:
+  version "2.4.7"
+  resolved "https://registry.yarnpkg.com/next/-/next-2.4.7.tgz#54cc71748e2bfb08013d301fd21d6f33a4fa9d5b"
   dependencies:
     ansi-html "0.0.7"
     babel-core "6.24.0"
@@ -2938,11 +2938,11 @@ react-deep-force-update@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/react-deep-force-update/-/react-deep-force-update-2.0.1.tgz#4f7f6c12c3e7de42f345992a3c518236fa1ecad3"
 
-react-dom-confetti@0.0.7:
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/react-dom-confetti/-/react-dom-confetti-0.0.7.tgz#d3517c3db1b0752556fe9e5a6290c66fa9a5c5c8"
+react-dom-confetti@0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/react-dom-confetti/-/react-dom-confetti-0.0.8.tgz#0acb780c36e5faa8dfea40e90c133e752c948fb3"
   dependencies:
-    dom-confetti "0.0.6"
+    dom-confetti "~0.0.7"
 
 react-dom@15.6.1:
   version "15.6.1"

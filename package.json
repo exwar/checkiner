@@ -10,11 +10,11 @@
     "isomorphic-fetch": "2.2.1",
     "lodash": "4.17.4",
     "morgan": "1.8.2",
-    "next": "2.4.6",
+    "next": "2.4.7",
     "qs": "6.5.0",
     "react": "15.6.1",
     "react-dom": "15.6.1",
-    "react-dom-confetti": "0.0.7",
+    "react-dom-confetti": "0.0.8",
     "reverse-string": "0.0.6"
   },
   "scripts": {
