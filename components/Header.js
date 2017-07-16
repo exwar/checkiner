@@ -15,7 +15,7 @@ const Header = ({ avatar, username, onLogout }) => {
         .header {
           background: rgba(0, 0, 0, .7);
           padding: 1rem;
-          dispay: flex;
+          display: flex;
           align-items: center;
           justify-content: space-between;
         }
