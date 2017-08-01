@@ -36,7 +36,7 @@ const matchJiraIssues = text => {
 const fetchIssuesData = (issues = []) => {
   if (issues.length < 1) throw 'At least one JIRA issue should be passed';
 
-  const jql = `issuetype in (standardIssueTypes(), subTaskIssueTypes()) AND issuekey IN ${issues.join(' OR issuekey IN ')}`;
+  const jql = `issuetype in (standardIssueTypes(), subTaskIssueTypes()) AND issuekey IN (${issues.join(') OR issuekey IN (')})`;
   const jqlQuery = qs.stringify({
     validateQuery: false,
     jql,
