@@ -17,12 +17,13 @@ class Layout extends Component {
           <link rel="shortcut icon" href="/static/favicons/favicon.ico" />
           <meta name="msapplication-config" content="/static/favicons/browserconfig.xml" />
           <meta name="theme-color" content="#ffffff" />
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merienda+One" media="all" />
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Mono" media="all" />
         </Head>
         {this.props.children}
         <style jsx global>{`
-          @import url('https://fonts.googleapis.com/css?family=Merienda+One');
-          @import url('https://fonts.googleapis.com/css?family=PT+Mono');
           *, *:before, *:after { margin: 0; padding: 0; box-sizing: border-box; }
+
           html {
             font-size: 10px;
           }
