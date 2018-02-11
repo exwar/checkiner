@@ -1,0 +1,8 @@
+version: '3'
+services:
+  checkiner:
+    build: .
+    ports:
+      - '3010:3010'
+    env_file: ./checkiner.env
+    restart: unless-stopped
