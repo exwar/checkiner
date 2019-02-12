@@ -2,6 +2,8 @@ const qs = require('qs');
 const dateUtils = require('./date.js');
 const api = require('./api.js');
 const jira = require('./jira.js');
+const REQUIRED_JIRA_ENV_VARS = ['JIRA_USER_EMAIL', 'JIRA_TOKEN', 'JIRA_DOMAIN'];
+const { serverRuntimeConfig } = require('../next.config');
 
 const MONTH_NAMES = [
   'January',
@@ -62,7 +64,7 @@ const getAttachments = (username, yesterday, today, isBlocked, jiraIssues) => {
 const sendSlackRequest = (req, res, jiraIssues = []) => {
   const { username, yesterday, today, isBlocked } = req.body;
   const data = qs.stringify({
-    channel: process.env.SLACK_APP_CHANNEL || '@stan',
+    channel: process.env.SLACK_APP_CHANNEL,
     token: req.body.token,
     as_user: true,
     attachments: JSON.stringify(getAttachments(username, yesterday, today, isBlocked, jiraIssues)),
@@ -88,7 +90,11 @@ const sendSlackRequest = (req, res, jiraIssues = []) => {
 };
 
 const checkinMiddleware = (req, res) => {
-  let jiraIssues = jira.matchJiraIssues(`${req.body.yesterday}\n${req.body.today}`);
+  const jiraEnvsSet = REQUIRED_JIRA_ENV_VARS.reduce((acc, item) => {
+    return acc && serverRuntimeConfig[item] !== undefined;
+  }, true);
+
+  const jiraIssues = jiraEnvsSet ? jira.matchJiraIssues(`${req.body.yesterday}\n${req.body.today}`) : [];
 
   if (jiraIssues.length > 0) {
     jira

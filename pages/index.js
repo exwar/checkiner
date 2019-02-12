@@ -2,15 +2,13 @@ import React, { Component } from 'react';
 import 'isomorphic-fetch';
 import Confetti from 'react-dom-confetti';
 
-import AuthService from 'utils/AuthService';
 import Layout from 'components/Layout';
 import Header from 'components/Header';
 import TextArea from 'components/TextArea';
 import Router from 'next/router';
 import Spinner from 'components/Spinner';
-import { checkStatus, parseJSON } from 'utils/api';
+import { checkStatus, checkStatusWith } from 'utils/api';
 import { isYesterdayASunday } from 'utils/date';
-import { fetchIssuesData } from 'utils/jira';
 
 const FIELD_YESTERDAY = 'yesterday';
 const FIELD_TODAY = 'today';
@@ -42,6 +40,7 @@ class Index extends Component {
     isBlocked: false,
     profile: {},
     isLoading: true,
+    isLoggingOut: false,
     isSubmiting: false,
     isPosted: false,
   };
@@ -58,9 +57,37 @@ class Index extends Component {
     }));
   };
 
-  handleLogout() {
-    localStorage.removeItem('profile');
-    Router.replace('/login');
+  handleLogout = () => {
+    this.setState({
+      isLoggingOut: true,
+    });
+
+    const options = {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      // body: JSON.stringify({
+        // token: this.state.profile.access_token,
+      // }),
+    };
+
+    fetch('/logout', options)
+      .then(checkStatus)
+      .then(() => {
+        this.setState({
+          isLoggingOut: false,
+        });
+        localStorage.removeItem('profile');
+        Router.replace('/login');
+      })
+      .catch(ex => {
+        console.error(ex.stack);
+        this.setState({
+          isLoggingOut: false,
+        });
+      });
   }
 
   handleSubmit = () => {
@@ -138,6 +165,7 @@ class Index extends Component {
           avatar={this.state.profile.user.image_192}
           username={this.state.profile.user.name}
           onLogout={this.handleLogout}
+          isLoggingOut={this.state.isLoggingOut}
         />
         <main className="checkin__main">
           <div className="checkin__content">

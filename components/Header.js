@@ -1,13 +1,13 @@
 import React from 'react';
 
-const Header = ({ avatar, username, onLogout }) => {
+const Header = ({ avatar, username, onLogout, isLoggingOut }) => {
   return (
     <header className="header">
       <div className="user">
         <img className="user__avatar" src={avatar} />
         <p className="user__name">{username}</p>
       </div>
-      <button className="header__logout" onClick={onLogout}>
+      <button className="header__logout" disabled={isLoggingOut} onClick={onLogout}>
         <span>Log out</span>
       </button>
 
@@ -46,6 +46,13 @@ const Header = ({ avatar, username, onLogout }) => {
         }
         .header__logout:hover {
           background: rgba(145, 92, 182, .9);
+        }
+        .header__logout[disabled] {
+          background: rgba(145, 92, 182, .3);
+          cursor: not-allowed;
+        }
+        .header__logout[disabled] span {
+          opacity: .6;
         }
         .header__logout span {
           line-height: 1rem;
