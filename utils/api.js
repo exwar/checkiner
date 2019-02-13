@@ -12,5 +12,5 @@ const parseJSON = response => response.json();
 
 module.exports = {
   checkStatus,
-  parseJSON,
+  parseJSON
 };

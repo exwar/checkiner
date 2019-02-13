@@ -4,5 +4,5 @@ services:
     build: .
     ports:
       - '3010:3010'
-    env_file: ./checkiner.env
+    env_file: ./.env
     restart: unless-stopped

@@ -18,11 +18,12 @@
     "reverse-string": "0.0.6"
   },
   "scripts": {
-    "dev": "nodemon -w server.js -w utils server.js",
+    "dev": "nodemon -r dotenv/config -w utils -w server.js server.js",
     "build": "next build",
     "start": "NODE_ENV=production node server.js"
   },
   "devDependencies": {
+    "dotenv": "6.2.0",
     "nodemon": "1.18.10"
   }
 }

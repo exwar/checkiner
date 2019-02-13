@@ -9,13 +9,14 @@ const Spinner = () => {
         }
 
         div:before {
-          content: "";
+          content: '';
           height: 5rem;
           width: 5rem;
           position: absolute;
           border-width: 1rem;
           border-style: solid;
-          border-color: rgba(145, 92, 182, .9) rgba(255, 255, 255, 1) rgba(255, 255, 255, 1);
+          border-color: rgba(145, 92, 182, 0.9) rgba(255, 255, 255, 1)
+            rgba(255, 255, 255, 1);
           border-radius: 100%;
           animation: rotation 0.7s infinite linear;
         }
@@ -23,7 +24,8 @@ const Spinner = () => {
         @keyframes rotation {
           from {
             transform: rotate(0deg);
-          } to {
+          }
+          to {
             transform: rotate(359deg);
           }
         }

@@ -6,7 +6,7 @@ import Spinner from 'components/Spinner';
 
 class Login extends Component {
   state = {
-    isSigningIn: false,
+    isSigningIn: false
   };
 
   componentDidMount() {
@@ -18,7 +18,7 @@ class Login extends Component {
 
   handleSignInClick = event => {
     this.setState({
-      isSigningIn: true,
+      isSigningIn: true
     });
   };
 
@@ -27,12 +27,17 @@ class Login extends Component {
       <Layout>
         <article className="login-page">
           <div className="login-page__header">
-            <h1>Checkiner 3000<sup>v2.0</sup></h1>
+            <h1>
+              Checkiner 3000<sup>v2.0</sup>
+            </h1>
           </div>
           <div className="login-page__signin">
-            {this.state.isSigningIn ? <Spinner /> : <SlackButton onClick={this.handleSignInClick} />}
+            {this.state.isSigningIn ? (
+              <Spinner />
+            ) : (
+              <SlackButton onClick={this.handleSignInClick} />
+            )}
           </div>
-
         </article>
 
         <style jsx>{`
@@ -52,7 +57,7 @@ class Login extends Component {
           .login-page__header sup {
             font-size: 1rem;
             vertical-align: 2.5rem;
-            opacity: .4;
+            opacity: 0.4;
           }
           .login-page__signin {
             height: 5rem;

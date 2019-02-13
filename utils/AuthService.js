@@ -19,7 +19,7 @@ export default class AuthService {
           if (state) {
             this.setProfile({
               ...data,
-              channel,
+              channel
             });
           }
 

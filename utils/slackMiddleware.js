@@ -7,7 +7,7 @@ const signinMiddleware = (req, res) => {
 
   const params = {
     client_id: process.env.SLACK_APP_ID,
-    redirect_uri: `${req.protocol}://${req.get('host')}/auth`,
+    redirect_uri: `${req.protocol}://${req.get('host')}/auth`
   };
 
   switch (req.query.action) {

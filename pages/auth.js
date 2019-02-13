@@ -5,11 +5,16 @@ import Spinner from 'components/Spinner';
 
 class Auth extends Component {
   static getInitialProps({ req, res, query }) {
-    return req && !query.code ? res.writeHead(302, { Location: '/' }).end() : {};
+    return req && !query.code
+      ? res.writeHead(302, { Location: '/' }).end()
+      : {};
   }
 
   componentDidMount() {
-    const auth = new AuthService(this.props.url.query.code, this.props.url.query.state);
+    const auth = new AuthService(
+      this.props.url.query.code,
+      this.props.url.query.state
+    );
   }
 
   render() {
@@ -18,13 +23,13 @@ class Auth extends Component {
         <div>
           <Spinner />
           <style jsx>{`
-              div {
-                min-height: 100vh;
-                height: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-              }
+            div {
+              min-height: 100vh;
+              height: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
           `}</style>
         </div>
       </Layout>

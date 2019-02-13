@@ -7,7 +7,7 @@ import Header from 'components/Header';
 import TextArea from 'components/TextArea';
 import Router from 'next/router';
 import Spinner from 'components/Spinner';
-import { checkStatus, checkStatusWith } from 'utils/api';
+import { checkStatus } from 'utils/api';
 import { isYesterdayASunday } from 'utils/date';
 
 const FIELD_YESTERDAY = 'yesterday';
@@ -18,7 +18,7 @@ const confettiConfig = {
   spread: 60,
   startVelocity: 20,
   elementCount: 40,
-  decay: 0.95,
+  decay: 0.95
 };
 
 class Index extends Component {
@@ -30,7 +30,7 @@ class Index extends Component {
 
     this.setState({
       profile: JSON.parse(localStorage.profile),
-      isLoading: false,
+      isLoading: false
     });
   }
 
@@ -42,42 +42,42 @@ class Index extends Component {
     isLoading: true,
     isLoggingOut: false,
     isSubmiting: false,
-    isPosted: false,
+    isPosted: false
   };
 
   handleTextAreaChange(text, id) {
     this.setState({
-      [id]: text,
+      [id]: text
     });
   }
 
   handleBlockersChange = () => {
     this.setState(prevState => ({
-      isBlocked: !prevState.isBlocked,
+      isBlocked: !prevState.isBlocked
     }));
   };
 
   handleLogout = () => {
     this.setState({
-      isLoggingOut: true,
+      isLoggingOut: true
     });
 
     const options = {
       method: 'POST',
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      // body: JSON.stringify({
-        // token: this.state.profile.access_token,
-      // }),
+      body: JSON.stringify({
+        token: this.state.profile.access_token
+      })
     };
 
     fetch('/logout', options)
       .then(checkStatus)
       .then(() => {
         this.setState({
-          isLoggingOut: false,
+          isLoggingOut: false
         });
         localStorage.removeItem('profile');
         Router.replace('/login');
@@ -85,10 +85,10 @@ class Index extends Component {
       .catch(ex => {
         console.error(ex.stack);
         this.setState({
-          isLoggingOut: false,
+          isLoggingOut: false
         });
       });
-  }
+  };
 
   handleSubmit = () => {
     const url = '/checkin';
@@ -96,19 +96,19 @@ class Index extends Component {
       method: 'POST',
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         yesterday: this.state[FIELD_YESTERDAY],
         today: this.state[FIELD_TODAY],
         isBlocked: this.state.isBlocked,
         username: this.state.profile.user.name,
-        token: this.state.profile.access_token,
-      }),
+        token: this.state.profile.access_token
+      })
     };
 
     this.setState({
-      isSubmiting: true,
+      isSubmiting: true
     });
 
     fetch(url, options)
@@ -116,7 +116,7 @@ class Index extends Component {
       .then(() => {
         this.setState({
           isSubmiting: false,
-          isPosted: true,
+          isPosted: true
         });
 
         setTimeout(() => {
@@ -124,14 +124,14 @@ class Index extends Component {
             [FIELD_YESTERDAY]: '',
             [FIELD_TODAY]: '',
             isBlocked: false,
-            isPosted: false,
+            isPosted: false
           });
         }, 1500);
       })
       .catch(ex => {
         console.error(ex.stack);
         this.setState({
-          isSubmiting: false,
+          isSubmiting: false
         });
       });
   };
@@ -157,7 +157,8 @@ class Index extends Component {
     const isSubmitDisabled =
       this.state.isSubmiting ||
       this.state.isPosted ||
-      (this.state[FIELD_YESTERDAY].trim().length < 1 && this.state[FIELD_TODAY].trim().length < 1);
+      (this.state[FIELD_YESTERDAY].trim().length < 1 &&
+        this.state[FIELD_TODAY].trim().length < 1);
 
     return (
       <div className="checkin">
@@ -171,33 +172,57 @@ class Index extends Component {
           <div className="checkin__content">
             <div className="checkin__textarea">
               <TextArea
-                placeholder={`What I did ${isYesterdayASunday(new Date()) ? 'on Friday' : 'Yesterday'}`}
+                placeholder={`What I did ${
+                  isYesterdayASunday(new Date()) ? 'on Friday' : 'Yesterday'
+                }`}
                 value={this.state[FIELD_YESTERDAY]}
-                onChange={e => this.handleTextAreaChange(e.target.value, FIELD_YESTERDAY)}
+                onChange={e =>
+                  this.handleTextAreaChange(e.target.value, FIELD_YESTERDAY)
+                }
               />
             </div>
             <div className="checkin__textarea">
               <TextArea
                 placeholder="What I am doing today"
                 value={this.state[FIELD_TODAY]}
-                onChange={e => this.handleTextAreaChange(e.target.value, FIELD_TODAY)}
+                onChange={e =>
+                  this.handleTextAreaChange(e.target.value, FIELD_TODAY)
+                }
               />
             </div>
             <footer className="checkin__footer">
-              <label className={`checkin__blockers ${this.state.isBlocked ? 'checkin__blockers__blocked' : ''}`}>
-                <input type="checkbox" checked={!this.state.isBlocked} onChange={this.handleBlockersChange} />
+              <label
+                className={`checkin__blockers ${
+                  this.state.isBlocked ? 'checkin__blockers__blocked' : ''
+                }`}
+              >
+                <input
+                  type="checkbox"
+                  checked={!this.state.isBlocked}
+                  onChange={this.handleBlockersChange}
+                />
                 No blockers
               </label>
-              <button type="submit" className="checkin__submit" disabled={isSubmitDisabled} onClick={this.handleSubmit}>
-                <Confetti active={this.state.isPosted} config={confettiConfig} />
-                {this.state.isSubmiting
-                  ? <span>Posting...</span>
-                  : this.state.isPosted
-                      ? <span>Posted!</span>
-                      : <span>
-                          Post to
-                          <small>{this.state.profile.channel}</small>
-                        </span>}
+              <button
+                type="submit"
+                className="checkin__submit"
+                disabled={isSubmitDisabled}
+                onClick={this.handleSubmit}
+              >
+                <Confetti
+                  active={this.state.isPosted}
+                  config={confettiConfig}
+                />
+                {this.state.isSubmiting ? (
+                  <span>Posting...</span>
+                ) : this.state.isPosted ? (
+                  <span>Posted!</span>
+                ) : (
+                  <span>
+                    Post to
+                    <small>{this.state.profile.channel}</small>
+                  </span>
+                )}
               </button>
             </footer>
           </div>
@@ -233,7 +258,7 @@ class Index extends Component {
           .checkin__blockers {
             background-color: #fff;
             padding: 1.25rem;
-            border-radius: .4rem;
+            border-radius: 0.4rem;
             color: #555;
             font: 1.75rem sans-serif;
             display: flex;
@@ -243,24 +268,24 @@ class Index extends Component {
           }
           .checkin__blockers__blocked {
             color: orangered;
-            box-shadow: 0 0 1rem .25rem orangered;
+            box-shadow: 0 0 1rem 0.25rem orangered;
             background-size: cover;
             background: #000 url('/static/flame.gif') center no-repeat;
           }
           .checkin__blockers input {
-            margin-right: .5rem;
+            margin-right: 0.5rem;
           }
           .checkin__submit {
             margin: 0;
             padding: 1rem 1.5rem;
-            border-radius: .4rem;
+            border-radius: 0.4rem;
             border: none;
             cursor: pointer;
-            background: rgba(145, 92, 182, .7);
-            transition: background .2s;
+            background: rgba(145, 92, 182, 0.7);
+            transition: background 0.2s;
           }
           .checkin__submit:hover {
-            background: rgba(145, 92, 182, .9);
+            background: rgba(145, 92, 182, 0.9);
           }
           .checkin__submit span {
             line-height: 1rem;
@@ -273,7 +298,7 @@ class Index extends Component {
             height: 3.4rem;
             min-width: 10.4rem;
             max-width: 14rem;
-            transition: color .2s;
+            transition: color 0.2s;
           }
           .checkin__submit small {
             display: block;
@@ -287,11 +312,11 @@ class Index extends Component {
             content: '';
           }
           .checkin__submit[disabled] {
-            background: rgba(145, 92, 182, .3);
+            background: rgba(145, 92, 182, 0.3);
             cursor: not-allowed;
           }
           .checkin__submit[disabled] span {
-            color: rgba(255, 255, 255, .7);
+            color: rgba(255, 255, 255, 0.7);
           }
         `}</style>
       </div>
@@ -303,7 +328,10 @@ class Index extends Component {
       <Layout>
         {this.state.isLoading ? this.renderLoader() : this.renderPage()}
         <style jsx>{`
-          span { font-size: 2rem; color: #fff; }
+          span {
+            font-size: 2rem;
+            color: #fff;
+          }
         `}</style>
       </Layout>
     );
