@@ -1,11 +1,15 @@
 const qs = require('qs');
 const _ = require('lodash');
+const getConfig = require('next/config');
 const reverseString = require('reverse-string');
 const api = require('./api.js');
 
-const JIRA_USER = process.env.JIRA_USER;
-const JIRA_PASSWORD = process.env.JIRA_PASSWORD;
-const JIRA_DOMAIN = 'https://aussiefarmers.atlassian.net';
+const {
+  JIRA_USER_EMAIL,
+  JIRA_TOKEN,
+  JIRA_DOMAIN
+} = require('../next.config').serverRuntimeConfig;
+
 const JIRA_ISSUE_REGEX = /\d+-[A-Z]+(?!-?[a-zA-Z]{1,10})/gm;
 
 const btoa = str => {
@@ -20,8 +24,8 @@ const btoa = str => {
   return buffer.toString('base64');
 };
 
-const getBasicAuthHeader = (user, password) => {
-  return `Basic ${btoa(`${user}:${password}`)}`;
+const getBasicAuthHeader = (userEmail, token) => {
+  return `Basic ${btoa(`${userEmail}:${token}`)}`;
 };
 
 const matchJiraIssues = text => {
@@ -36,23 +40,27 @@ const matchJiraIssues = text => {
 const fetchIssuesData = (issues = []) => {
   if (issues.length < 1) throw 'At least one JIRA issue should be passed';
 
-  const jql = `issuetype in (standardIssueTypes(), subTaskIssueTypes()) AND issuekey IN (${issues.join(') OR issuekey IN (')})`;
+  const jql = `issuetype in (standardIssueTypes(), subTaskIssueTypes()) AND issuekey IN (${issues.join(
+    ') OR issuekey IN ('
+  )})`;
   const jqlQuery = qs.stringify({
     validateQuery: false,
-    jql,
+    jql
   });
 
-  const url = `${JIRA_DOMAIN}/rest/api/2/search?${jqlQuery}`;
+  const url = `${JIRA_DOMAIN}/rest/api/3/search?${jqlQuery}`;
   const options = {
     headers: {
-      Authorization: getBasicAuthHeader(JIRA_USER, JIRA_PASSWORD),
-      'Content-Type': 'application/json',
-    },
+      Authorization: getBasicAuthHeader(JIRA_USER_EMAIL, JIRA_TOKEN),
+      'Content-Type': 'application/json'
+    }
   };
 
-  return fetch(url, options).then(api.parseJSON).catch(ex => {
-    throw ex;
-  });
+  return fetch(url, options)
+    .then(api.parseJSON)
+    .catch(ex => {
+      throw ex;
+    });
 };
 
 const parseIssues = json => {
@@ -64,8 +72,8 @@ const parseIssues = json => {
       {
         key: issue.key,
         summary: issue.fields.summary,
-        url: `${JIRA_DOMAIN}/browse/${issue.key}`,
-      },
+        url: `${JIRA_DOMAIN}/browse/${issue.key}`
+      }
     ];
   }, []);
 };
@@ -73,5 +81,5 @@ const parseIssues = json => {
 module.exports = {
   fetchIssuesData,
   parseIssues,
-  matchJiraIssues,
+  matchJiraIssues
 };

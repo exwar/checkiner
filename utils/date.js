@@ -3,5 +3,5 @@ const isYesterdayASunday = date => {
 };
 
 module.exports = {
-  isYesterdayASunday,
+  isYesterdayASunday
 };

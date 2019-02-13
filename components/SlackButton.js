@@ -15,18 +15,18 @@ class SlackButton extends React.Component {
           srcSet="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x"
         />
         <style jsx>{`
-        a {
-          display: inline-block;
-          transition: all .2s ease-in-out;
-          border-radius: 6px;
-        }
-        img {
-          vertical-align: top;
-        }
-        a:hover {
-          box-shadow: 0 0 25px 10px rgba(145, 92, 182, .7);
-        }
-      `}</style>
+          a {
+            display: inline-block;
+            transition: all 0.2s ease-in-out;
+            border-radius: 6px;
+          }
+          img {
+            vertical-align: top;
+          }
+          a:hover {
+            box-shadow: 0 0 25px 10px rgba(145, 92, 182, 0.7);
+          }
+        `}</style>
       </a>
     );
   }

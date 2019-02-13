@@ -2,6 +2,8 @@ const qs = require('qs');
 const dateUtils = require('./date.js');
 const api = require('./api.js');
 const jira = require('./jira.js');
+const REQUIRED_JIRA_ENV_VARS = ['JIRA_USER_EMAIL', 'JIRA_TOKEN', 'JIRA_DOMAIN'];
+const { serverRuntimeConfig } = require('../next.config');
 
 const MONTH_NAMES = [
   'January',
@@ -15,12 +17,13 @@ const MONTH_NAMES = [
   'September',
   'October',
   'November',
-  'December',
+  'December'
 ];
 
 const getAttachments = (username, yesterday, today, isBlocked, jiraIssues) => {
   const currentDate = new Date();
-  const humanDate = currentDate.getDate() + ' ' + MONTH_NAMES[currentDate.getMonth()];
+  const humanDate =
+    currentDate.getDate() + ' ' + MONTH_NAMES[currentDate.getMonth()];
 
   const attachments = [
     {
@@ -28,32 +31,36 @@ const getAttachments = (username, yesterday, today, isBlocked, jiraIssues) => {
       color: '#915CB6',
       fields: [
         {
-          title: dateUtils.isYesterdayASunday(currentDate) ? 'Friday' : 'Yesterday',
+          title: dateUtils.isYesterdayASunday(currentDate)
+            ? 'Friday'
+            : 'Yesterday',
           value: yesterday || '_Nothing_',
-          short: false,
+          short: false
         },
         {
           title: 'Today',
           value: today || '_Nothing_',
-          short: false,
-        },
+          short: false
+        }
       ],
       mrkdwn_in: ['fields'],
-      footer: "<https://slackcheck.in|Stan's IT Checkiner 3000>",
-    },
+      footer: "<https://slackcheck.in|Stan's IT Checkiner 3000>"
+    }
   ];
 
   if (jiraIssues.length > 0) {
     attachments[0].fields.push({
       title: 'Mentioned JIRA Issues',
-      value: jiraIssues.map(issue => `<${issue.url}|${issue.key}> — ${issue.summary}`).join('\n'),
-      short: false,
+      value: jiraIssues
+        .map(issue => `<${issue.url}|${issue.key}> — ${issue.summary}`)
+        .join('\n'),
+      short: false
     });
   }
 
   attachments[0].fields.push({
     value: isBlocked ? '🚨 Blocked' : '✅ No blockers',
-    short: false,
+    short: false
   });
 
   return attachments;
@@ -62,16 +69,18 @@ const getAttachments = (username, yesterday, today, isBlocked, jiraIssues) => {
 const sendSlackRequest = (req, res, jiraIssues = []) => {
   const { username, yesterday, today, isBlocked } = req.body;
   const data = qs.stringify({
-    channel: process.env.SLACK_APP_CHANNEL || '@stan',
+    channel: process.env.SLACK_APP_CHANNEL,
     token: req.body.token,
     as_user: true,
-    attachments: JSON.stringify(getAttachments(username, yesterday, today, isBlocked, jiraIssues)),
+    attachments: JSON.stringify(
+      getAttachments(username, yesterday, today, isBlocked, jiraIssues)
+    )
   });
 
   const url = `https://slack.com/api/chat.postMessage?${data}`;
 
   return fetch(url, {
-    method: 'POST',
+    method: 'POST'
   })
     .then(api.checkResponse)
     .then(api.parseJson)
@@ -88,7 +97,13 @@ const sendSlackRequest = (req, res, jiraIssues = []) => {
 };
 
 const checkinMiddleware = (req, res) => {
-  let jiraIssues = jira.matchJiraIssues(`${req.body.yesterday}\n${req.body.today}`);
+  const jiraEnvsSet = REQUIRED_JIRA_ENV_VARS.reduce((acc, item) => {
+    return acc && serverRuntimeConfig[item] !== undefined;
+  }, true);
+
+  const jiraIssues = jiraEnvsSet
+    ? jira.matchJiraIssues(`${req.body.yesterday}\n${req.body.today}`)
+    : [];
 
   if (jiraIssues.length > 0) {
     jira

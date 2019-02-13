@@ -1,28 +1,29 @@
 {
   "name": "checkiner",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "license": "MIT",
   "dependencies": {
-    "babel-plugin-module-resolver": "3.1.0",
+    "babel-plugin-module-resolver": "3.2.0",
     "babel-preset-stage-0": "6.24.1",
-    "body-parser": "1.18.2",
-    "express": "4.16.2",
+    "body-parser": "1.18.3",
+    "express": "4.16.4",
     "isomorphic-fetch": "2.2.1",
-    "lodash": "4.17.5",
-    "morgan": "1.9.0",
-    "next": "5.0.0",
-    "qs": "6.5.1",
-    "react": "16.2.0",
-    "react-dom": "16.2.0",
-    "react-dom-confetti": "0.0.8",
+    "lodash": "4.17.11",
+    "morgan": "1.9.1",
+    "next": "8.0.0",
+    "qs": "6.6.0",
+    "react": "16.8.1",
+    "react-dom": "16.8.1",
+    "react-dom-confetti": "0.1.0",
     "reverse-string": "0.0.6"
   },
   "scripts": {
-    "dev": "nodemon -w server.js -w utils server.js",
+    "dev": "nodemon -r dotenv/config -w utils -w server.js server.js",
     "build": "next build",
     "start": "NODE_ENV=production node server.js"
   },
   "devDependencies": {
-    "nodemon": "1.17.1"
+    "dotenv": "6.2.0",
+    "nodemon": "1.18.10"
   }
 }

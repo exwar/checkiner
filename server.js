@@ -1,11 +1,12 @@
 const express = require('express');
 const next = require('next');
-const fetch = require('isomorphic-fetch');
+
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const slackMiddleware = require('./utils/slackMiddleware');
 const checkinMiddleware = require('./utils/checkinMiddleware');
 const authMiddleware = require('./utils/authMiddleware');
+const logOutMiddleware = require('./utils/logOutMiddleware');
 
 const dev = process.env.NODE_ENV !== 'production';
 const PORT = process.env.PORT || 3010;
@@ -13,7 +14,7 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 
 // Checking for setted environment variables
-const REQUIRED_ENV_VARS = ['SLACK_APP_ID', 'SLACK_APP_SECRET', 'SLACK_APP_CHANNEL', 'JIRA_USER', 'JIRA_PASSWORD'];
+const REQUIRED_ENV_VARS = ['SLACK_APP_ID', 'SLACK_APP_SECRET', 'SLACK_APP_CHANNEL'];
 
 REQUIRED_ENV_VARS.map(env => {
   if (process.env[env] === undefined) {
@@ -32,6 +33,7 @@ app
     server.get('/slack', slackMiddleware);
     server.get('/oauth', authMiddleware);
     server.post('/checkin', checkinMiddleware);
+    server.post('/logout', logOutMiddleware);
 
     server.get('*', (req, res) => {
       return handle(req, res);

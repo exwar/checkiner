@@ -6,7 +6,7 @@ const TextArea = ({ value, placeholder, className, onChange }) => {
       <textarea placeholder={placeholder} onChange={onChange} value={value} />
       <style jsx>{`
         textarea {
-          border-radius: .4rem;
+          border-radius: 0.4rem;
           resize: none;
           height: 15rem;
           width: 100%;
@@ -16,12 +16,12 @@ const TextArea = ({ value, placeholder, className, onChange }) => {
           vertical-align: top;
           font: 1.6rem 'PT Mono', monospace;
           line-height: 2rem;
-          transition: box-shadow .2s;
+          transition: box-shadow 0.2s;
         }
 
         textarea:focus {
           outline: none;
-          box-shadow: 0 0 5px 5px rgba(145, 92, 182, .5);
+          box-shadow: 0 0 5px 5px rgba(145, 92, 182, 0.5);
         }
       `}</style>
     </div>
