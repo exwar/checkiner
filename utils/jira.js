@@ -4,11 +4,7 @@ const getConfig = require('next/config');
 const reverseString = require('reverse-string');
 const api = require('./api.js');
 
-const {
-  JIRA_USER_EMAIL,
-  JIRA_TOKEN,
-  JIRA_DOMAIN
-} = require('../next.config').serverRuntimeConfig;
+const { JIRA_USER_EMAIL, JIRA_TOKEN, JIRA_DOMAIN } = require('../next.config').serverRuntimeConfig;
 
 const JIRA_ISSUE_REGEX = /\d+-[A-Z]+(?!-?[a-zA-Z]{1,10})/gm;
 

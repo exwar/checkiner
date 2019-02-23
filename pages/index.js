@@ -157,8 +157,7 @@ class Index extends Component {
     const isSubmitDisabled =
       this.state.isSubmiting ||
       this.state.isPosted ||
-      (this.state[FIELD_YESTERDAY].trim().length < 1 &&
-        this.state[FIELD_TODAY].trim().length < 1);
+      (this.state[FIELD_YESTERDAY].trim().length < 1 && this.state[FIELD_TODAY].trim().length < 1);
 
     return (
       <div className="checkin">
@@ -172,47 +171,25 @@ class Index extends Component {
           <div className="checkin__content">
             <div className="checkin__textarea">
               <TextArea
-                placeholder={`What I did ${
-                  isYesterdayASunday(new Date()) ? 'on Friday' : 'Yesterday'
-                }`}
+                placeholder={`What I did ${isYesterdayASunday(new Date()) ? 'on Friday' : 'Yesterday'}`}
                 value={this.state[FIELD_YESTERDAY]}
-                onChange={e =>
-                  this.handleTextAreaChange(e.target.value, FIELD_YESTERDAY)
-                }
+                onChange={e => this.handleTextAreaChange(e.target.value, FIELD_YESTERDAY)}
               />
             </div>
             <div className="checkin__textarea">
               <TextArea
                 placeholder="What I am doing today"
                 value={this.state[FIELD_TODAY]}
-                onChange={e =>
-                  this.handleTextAreaChange(e.target.value, FIELD_TODAY)
-                }
+                onChange={e => this.handleTextAreaChange(e.target.value, FIELD_TODAY)}
               />
             </div>
             <footer className="checkin__footer">
-              <label
-                className={`checkin__blockers ${
-                  this.state.isBlocked ? 'checkin__blockers__blocked' : ''
-                }`}
-              >
-                <input
-                  type="checkbox"
-                  checked={!this.state.isBlocked}
-                  onChange={this.handleBlockersChange}
-                />
+              <label className={`checkin__blockers ${this.state.isBlocked ? 'checkin__blockers__blocked' : ''}`}>
+                <input type="checkbox" checked={!this.state.isBlocked} onChange={this.handleBlockersChange} />
                 No blockers
               </label>
-              <button
-                type="submit"
-                className="checkin__submit"
-                disabled={isSubmitDisabled}
-                onClick={this.handleSubmit}
-              >
-                <Confetti
-                  active={this.state.isPosted}
-                  config={confettiConfig}
-                />
+              <button type="submit" className="checkin__submit" disabled={isSubmitDisabled} onClick={this.handleSubmit}>
+                <Confetti active={this.state.isPosted} config={confettiConfig} />
                 {this.state.isSubmiting ? (
                   <span>Posting...</span>
                 ) : this.state.isPosted ? (

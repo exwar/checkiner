@@ -22,8 +22,7 @@ const MONTH_NAMES = [
 
 const getAttachments = (username, yesterday, today, isBlocked, jiraIssues) => {
   const currentDate = new Date();
-  const humanDate =
-    currentDate.getDate() + ' ' + MONTH_NAMES[currentDate.getMonth()];
+  const humanDate = currentDate.getDate() + ' ' + MONTH_NAMES[currentDate.getMonth()];
 
   const attachments = [
     {
@@ -31,9 +30,7 @@ const getAttachments = (username, yesterday, today, isBlocked, jiraIssues) => {
       color: '#915CB6',
       fields: [
         {
-          title: dateUtils.isYesterdayASunday(currentDate)
-            ? 'Friday'
-            : 'Yesterday',
+          title: dateUtils.isYesterdayASunday(currentDate) ? 'Friday' : 'Yesterday',
           value: yesterday || '_Nothing_',
           short: false
         },
@@ -51,9 +48,7 @@ const getAttachments = (username, yesterday, today, isBlocked, jiraIssues) => {
   if (jiraIssues.length > 0) {
     attachments[0].fields.push({
       title: 'Mentioned JIRA Issues',
-      value: jiraIssues
-        .map(issue => `<${issue.url}|${issue.key}> — ${issue.summary}`)
-        .join('\n'),
+      value: jiraIssues.map(issue => `<${issue.url}|${issue.key}> — ${issue.summary}`).join('\n'),
       short: false
     });
   }
@@ -72,9 +67,7 @@ const sendSlackRequest = (req, res, jiraIssues = []) => {
     channel: process.env.SLACK_APP_CHANNEL,
     token: req.body.token,
     as_user: true,
-    attachments: JSON.stringify(
-      getAttachments(username, yesterday, today, isBlocked, jiraIssues)
-    )
+    attachments: JSON.stringify(getAttachments(username, yesterday, today, isBlocked, jiraIssues))
   });
 
   const url = `https://slack.com/api/chat.postMessage?${data}`;
@@ -101,9 +94,7 @@ const checkinMiddleware = (req, res) => {
     return acc && serverRuntimeConfig[item] !== undefined;
   }, true);
 
-  const jiraIssues = jiraEnvsSet
-    ? jira.matchJiraIssues(`${req.body.yesterday}\n${req.body.today}`)
-    : [];
+  const jiraIssues = jiraEnvsSet ? jira.matchJiraIssues(`${req.body.yesterday}\n${req.body.today}`) : [];
 
   if (jiraIssues.length > 0) {
     jira

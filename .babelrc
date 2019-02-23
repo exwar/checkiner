@@ -1,19 +1,20 @@
 {
   "presets": [
-    ["next/babel", {
-      "preset-env": {},
-      "transform-runtime": {},
-      "styled-jsx": {},
-      "class-properties": {}
-    }]
+    [
+      "next/babel",
+      {
+        "preset-env": {},
+        "transform-runtime": {},
+        "styled-jsx": {},
+        "class-properties": {}
+      }
+    ]
   ],
   "plugins": [
     [
       "module-resolver",
       {
-        "root": [
-          "./"
-        ],
+        "root": ["./"],
         "alias": {
           "components": "./components",
           "utils": "./utils"

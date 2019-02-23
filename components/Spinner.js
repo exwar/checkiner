@@ -15,8 +15,7 @@ const Spinner = () => {
           position: absolute;
           border-width: 1rem;
           border-style: solid;
-          border-color: rgba(145, 92, 182, 0.9) rgba(255, 255, 255, 1)
-            rgba(255, 255, 255, 1);
+          border-color: rgba(145, 92, 182, 0.9) rgba(255, 255, 255, 1) rgba(255, 255, 255, 1);
           border-radius: 100%;
           animation: rotation 0.7s infinite linear;
         }

@@ -7,11 +7,7 @@ const Header = ({ avatar, username, onLogout, isLoggingOut }) => {
         <img className="user__avatar" src={avatar} />
         <p className="user__name">{username}</p>
       </div>
-      <button
-        className="header__logout"
-        disabled={isLoggingOut}
-        onClick={onLogout}
-      >
+      <button className="header__logout" disabled={isLoggingOut} onClick={onLogout}>
         <span>Log out</span>
       </button>
 

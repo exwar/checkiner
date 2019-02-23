@@ -1,5 +1,3 @@
-import React from 'react';
-
 const TextArea = ({ value, placeholder, className, onChange }) => {
   return (
     <div className={className}>
