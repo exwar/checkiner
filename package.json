@@ -12,8 +12,8 @@
     "morgan": "1.9.1",
     "next": "8.0.3",
     "qs": "6.6.0",
-    "react": "16.8.3",
-    "react-dom": "16.8.3",
+    "react": "16.8.4",
+    "react-dom": "16.8.4",
     "react-dom-confetti": "0.1.0",
     "reverse-string": "0.0.6"
   },
