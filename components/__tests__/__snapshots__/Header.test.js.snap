@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`With Snapshot testing Header rendered correctly 1`] = `
+<header
+  className="jsx-651776104 header"
+>
+  <div
+    className="jsx-651776104 user"
+  >
+    <img
+      className="jsx-651776104 user__avatar"
+    />
+    <p
+      className="jsx-651776104 user__name"
+    />
+  </div>
+  <button
+    className="jsx-651776104 header__logout"
+  >
+    <span
+      className="jsx-651776104"
+    >
+      Log out
+    </span>
+  </button>
+</header>
+`;
