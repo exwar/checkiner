@@ -11,9 +11,9 @@
     "lodash": "4.17.11",
     "morgan": "1.9.1",
     "next": "8.0.3",
-    "qs": "6.6.0",
-    "react": "16.8.4",
-    "react-dom": "16.8.4",
+    "qs": "6.7.0",
+    "react": "16.8.6",
+    "react-dom": "16.8.6",
     "react-dom-confetti": "0.1.0",
     "reverse-string": "0.0.6"
   },
