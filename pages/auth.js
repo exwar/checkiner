@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'next/router';
 import Layout from 'components/Layout';
 import AuthService from 'utils/AuthService';
 import Spinner from 'components/Spinner';
@@ -11,9 +12,11 @@ class Auth extends Component {
   }
 
   componentDidMount() {
+    const { query } = this.props.router;
+
     const auth = new AuthService(
-      this.props.url.query.code,
-      this.props.url.query.state
+      query.code,
+      query.state
     );
   }
 
@@ -37,4 +40,4 @@ class Auth extends Component {
   }
 }
 
-export default Auth;
+export default withRouter(Auth);
