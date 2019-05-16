@@ -14,7 +14,7 @@
     "qs": "6.7.0",
     "react": "16.8.6",
     "react-dom": "16.8.6",
-    "react-dom-confetti": "0.1.0",
+    "react-dom-confetti": "0.1.1",
     "reverse-string": "0.0.6"
   },
   "scripts": {
