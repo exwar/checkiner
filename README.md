@@ -8,6 +8,7 @@ check-ins in Slack.**
 
 1. Create a new Slack App: `https://api.slack.com/apps`
 1. Obtain `Client ID` and `Client Secret` for newly created Slack App
+  ![Slack Credentials](https://exwar.space/api/public/dl/LGxsgrUx/slack-creds.png?inline=true)
 1. Duplicate `example.env` file as `.env` and update env vars with your slack credentials and target channel. You can use either channel id or channel name.
 1. If you'd like to enable automatic link generation for mentioned JIRA tickets, [generate JIRA API token](https://confluence.atlassian.com/cloud/api-tokens-938839638.html)
 1. Put your gathered JIRA token in previously created `.env` file along with your Atlassian email and JIRA domain.
