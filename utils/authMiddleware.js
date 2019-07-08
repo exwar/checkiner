@@ -3,8 +3,8 @@ const api = require('./api.js');
 
 const authMiddleware = (req, res) => {
   const data = qs.stringify({
-    client_id: process.env.SLACK_APP_ID,
-    client_secret: process.env.SLACK_APP_SECRET,
+    client_id: process.env.SLACK_CLIENT_ID,
+    client_secret: process.env.SLACK_CLIENT_SECRET,
     code: req.query.code,
     redirect_uri: `${req.protocol}://${req.get('host')}/auth`
   });

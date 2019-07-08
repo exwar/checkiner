@@ -14,7 +14,7 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 
 // Checking for setted environment variables
-const REQUIRED_ENV_VARS = ['SLACK_APP_ID', 'SLACK_APP_SECRET', 'SLACK_APP_CHANNEL'];
+const REQUIRED_ENV_VARS = ['SLACK_CLIENT_ID', 'SLACK_CLIENT_SECRET', 'SLACK_CHANNEL'];
 
 REQUIRED_ENV_VARS.map(env => {
   if (process.env[env] === undefined) {
