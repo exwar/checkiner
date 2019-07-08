@@ -64,7 +64,7 @@ const getAttachments = (username, yesterday, today, isBlocked, jiraIssues) => {
 const sendSlackRequest = (req, res, jiraIssues = []) => {
   const { username, yesterday, today, isBlocked } = req.body;
   const data = qs.stringify({
-    channel: process.env.SLACK_APP_CHANNEL,
+    channel: process.env.SLACK_CHANNEL,
     token: req.body.token,
     as_user: true,
     attachments: JSON.stringify(getAttachments(username, yesterday, today, isBlocked, jiraIssues))
