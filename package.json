@@ -11,7 +11,7 @@
     "lodash": "4.17.15",
     "morgan": "1.9.1",
     "next": "9.0.3",
-    "qs": "6.7.0",
+    "qs": "6.8.0",
     "react": "16.9.0",
     "react-dom": "16.9.0",
     "react-dom-confetti": "0.1.1",
