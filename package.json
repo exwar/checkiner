@@ -10,10 +10,10 @@
     "isomorphic-fetch": "2.2.1",
     "lodash": "4.17.15",
     "morgan": "1.9.1",
-    "next": "9.0.6",
+    "next": "9.0.7",
     "qs": "6.9.0",
-    "react": "16.9.0",
-    "react-dom": "16.9.0",
+    "react": "16.10.1",
+    "react-dom": "16.10.1",
     "react-dom-confetti": "0.1.1",
     "reverse-string": "0.0.6"
   },
@@ -28,8 +28,8 @@
     "enzyme": "3.10.0",
     "enzyme-adapter-react-16": "1.14.0",
     "jest": "24.9.0",
-    "nodemon": "1.19.2",
+    "nodemon": "1.19.3",
     "react-addons-test-utils": "15.6.2",
-    "react-test-renderer": "16.9.0"
+    "react-test-renderer": "16.10.1"
   }
 }
