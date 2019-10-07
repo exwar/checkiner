@@ -27,9 +27,23 @@
     "dotenv": "8.1.0",
     "enzyme": "3.10.0",
     "enzyme-adapter-react-16": "1.14.0",
+    "husky": ">=3",
     "jest": "24.9.0",
+    "lint-staged": ">=9",
     "nodemon": "1.19.3",
+    "prettier": "1.18.2",
     "react-addons-test-utils": "15.6.2",
     "react-test-renderer": "16.10.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,css,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
