@@ -13,7 +13,7 @@
     "next": "9.1.1",
     "qs": "6.9.0",
     "react": "16.10.2",
-    "react-dom": "16.10.2",
+    "react-dom": "16.11.0",
     "react-dom-confetti": "0.1.1",
     "reverse-string": "0.0.6"
   },
