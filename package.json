@@ -10,10 +10,10 @@
     "isomorphic-fetch": "2.2.1",
     "lodash": "4.17.15",
     "morgan": "1.9.1",
-    "next": "9.0.8",
+    "next": "9.1.1",
     "qs": "6.9.0",
-    "react": "16.10.2",
-    "react-dom": "16.10.2",
+    "react": "16.11.0",
+    "react-dom": "16.11.0",
     "react-dom-confetti": "0.1.1",
     "reverse-string": "0.0.6"
   },
@@ -24,16 +24,16 @@
     "test": "jest"
   },
   "devDependencies": {
-    "dotenv": "8.1.0",
+    "dotenv": "8.2.0",
     "enzyme": "3.10.0",
-    "enzyme-adapter-react-16": "1.14.0",
+    "enzyme-adapter-react-16": "1.15.1",
     "husky": ">=3",
     "jest": "24.9.0",
     "lint-staged": ">=9",
-    "nodemon": "1.19.3",
+    "nodemon": "1.19.4",
     "prettier": "1.18.2",
     "react-addons-test-utils": "15.6.2",
-    "react-test-renderer": "16.10.2"
+    "react-test-renderer": "16.11.0"
   },
   "husky": {
     "hooks": {
