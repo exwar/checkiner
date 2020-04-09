@@ -30,7 +30,7 @@
     "husky": ">=4",
     "jest": "25.2.4",
     "lint-staged": ">=10",
-    "nodemon": "2.0.2",
+    "nodemon": "2.0.3",
     "prettier": "2.0.4",
     "react-addons-test-utils": "15.6.2",
     "react-test-renderer": "16.13.1"
