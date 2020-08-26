@@ -31,7 +31,7 @@
     "jest": "26.4.1",
     "lint-staged": ">=10",
     "nodemon": "2.0.4",
-    "prettier": "2.0.5",
+    "prettier": "2.1.1",
     "react-addons-test-utils": "15.6.2",
     "react-test-renderer": "16.13.1"
   },
