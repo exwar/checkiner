@@ -3,7 +3,7 @@
   "version": "2.1.0",
   "license": "MIT",
   "dependencies": {
-    "babel-plugin-module-resolver": "4.0.0",
+    "babel-plugin-module-resolver": "4.1.0",
     "babel-preset-stage-0": "6.24.1",
     "body-parser": "1.19.0",
     "express": "4.17.1",
