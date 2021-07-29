@@ -3,7 +3,7 @@
 **Web-service created to simplify and improve quality of daily
 check-ins in Slack.**
 
-![Slack Checkiner](https://exwar.space/api/public/dl/GWkuTbrd?inline=true)
+![Slack Checkiner](https://s.exwar.space/2021/07/checkiner.gif)
 
 ## Required setup
 
