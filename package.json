@@ -21,16 +21,22 @@
     "dev": "nodemon -r dotenv/config -w utils -w server.js server.js",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
-    "test": "jest"
+    "test": "jest",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "dotenv": "10.0.0",
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "1.15.6",
+    "husky": ">=6",
     "jest": "27.1.1",
+    "lint-staged": ">=10",
     "nodemon": "2.0.12",
     "prettier": "2.4.0",
     "react-addons-test-utils": "15.6.2",
     "react-test-renderer": "17.0.2"
-  }  
+  },
+  "lint-staged": {
+    "*.{js,css,md}": "prettier --write"
+  }
 }
