@@ -10,10 +10,10 @@
     "isomorphic-fetch": "3.0.0",
     "lodash": "4.17.21",
     "morgan": "1.10.0",
-    "next": "10.2.0",
+    "next": "11.1.2",
     "qs": "6.10.1",
-    "react": "16.14.0",
-    "react-dom": "16.14.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
     "react-dom-confetti": "0.2.0",
     "reverse-string": "0.0.6"
   },
@@ -27,23 +27,10 @@
     "dotenv": "10.0.0",
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "1.15.6",
-    "husky": ">=7",
-    "jest": "27.0.6",
-    "lint-staged": ">=11",
+    "jest": "27.1.1",
     "nodemon": "2.0.12",
-    "prettier": "2.3.2",
+    "prettier": "2.4.0",
     "react-addons-test-utils": "15.6.2",
     "react-test-renderer": "17.0.2"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,css,json,md}": [
-      "prettier --write",
-      "git add"
-    ]
-  }
+  }  
 }
