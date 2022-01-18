@@ -25,7 +25,7 @@
     "prepare": "husky install"
   },
   "devDependencies": {
-    "dotenv": "14.1.0",
+    "dotenv": "14.2.0",
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "1.15.6",
     "husky": ">=7",
