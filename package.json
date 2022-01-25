@@ -29,7 +29,7 @@
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "1.15.6",
     "husky": ">=7",
-    "jest": "27.4.5",
+    "jest": "27.4.7",
     "lint-staged": ">=12",
     "nodemon": "2.0.15",
     "prettier": "2.5.1",
