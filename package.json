@@ -30,7 +30,7 @@
     "enzyme-adapter-react-16": "1.15.6",
     "husky": ">=8",
     "jest": "28.1.0",
-    "lint-staged": ">=12.4.1",
+    "lint-staged": ">=13.0.1",
     "nodemon": "2.0.16",
     "prettier": "2.6.2",
     "react-addons-test-utils": "15.6.2",
